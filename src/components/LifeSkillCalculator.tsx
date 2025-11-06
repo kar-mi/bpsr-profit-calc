@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RECIPES } from "@/data/recipes";
-import { INGREDIENTS, INGREDIENT_MAP, Ingredient } from "@/data/ingredients";
+import {INGREDIENT_MAP, Ingredient } from "@/data/ingredients";
 import RecipeCard from "@/components/RecipeCard";
 import IngredientMaster from "@/components/IngredientMaster";
 
@@ -17,9 +17,10 @@ const groupRecipesBySkill = (recipes = RECIPES) => {
 const LifeSkillCalculator: React.FC = () => {
   const [ingredients, setIngredients] = useState<Record<string, Ingredient>>(INGREDIENT_MAP);
   const [recipes, setRecipes] = useState(RECIPES);
-  const [groupedRecipes, setGroupedRecipes] = useState(groupRecipesBySkill(RECIPES));
+  const [_, setGroupedRecipes] = useState(groupRecipesBySkill(RECIPES));
   const [selectedSkill, setSelectedSkill] = useState<string>("All");
   const [selectedRecipe, setSelectedRecipe] = useState(RECIPES[0]);
+  const [sortBy, setSortBy] = useState<"name" | "profit" | "totalCost">("name");
 
   // 🧠 Load saved data (prices & recipes)
   useEffect(() => {
