@@ -29,7 +29,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Smelting",
     "sellValue": 2083,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_god_metal_01.webp",
     "ingredients": [
       { "id": "baru_ore", "qty": 8 },
@@ -42,7 +42,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Smelting",
     "sellValue": 2083,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_god_metal_02.webp",
     "ingredients": [
       { "id": "luna_ore", "qty": 8 },
@@ -55,7 +55,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Smelting",
     "sellValue": 2083,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_aluminium_01.webp",
     "ingredients": [
       { "id": "azte_ore", "qty": 8 },
@@ -68,7 +68,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Smelting",
     "sellValue": 6000,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_equipment%20gems_01.webp",
     "ingredients": [
       { "id": "stokes_rich_ore", "qty": 9 },
@@ -81,10 +81,10 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 3200,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/red_crystal_stone_basic.webp",
     "ingredients": [
-      { "id": "starlight_ruby1", "qty": 1 },
+      { "id": "starlight_ruby1", "qty": 7 },
     ]
   },
   {
@@ -93,7 +93,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6200,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/red_crystal_stone_triangle_2.webp",
     "ingredients": [
       { "id": "starlight_ruby2", "qty": 5 },
@@ -107,7 +107,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6696,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/red_crystal_stone_square_2.webp",
     "ingredients": [
       { "id": "starlight_ruby2", "qty": 5 },
@@ -121,7 +121,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6448,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/red_crystal_stone_special_2.webp",
     "ingredients": [
       { "id": "starlight_ruby2", "qty": 5 },
@@ -135,7 +135,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6448,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/red_crystal_stone_pear_2.webp", 
     "ingredients": [
       { "id": "starlight_ruby2", "qty": 5 },
@@ -149,10 +149,10 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 3200,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/blue_crystal_stone_basic.webp",
     "ingredients": [
-      { "id": "starlight_sapphire1", "qty": 1 }
+      { "id": "starlight_sapphire1", "qty": 7 }
     ]
   },
   {
@@ -161,7 +161,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6200,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/blue_crystal_stone_triangle_2.webp",
     "ingredients": [
       { "id": "starlight_sapphire2", "qty": 5 },
@@ -175,7 +175,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6696,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/blue_crystal_stone_square_2.webp",
     "ingredients": [
       { "id": "starlight_sapphire2", "qty": 5 },
@@ -189,7 +189,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6448,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/blue_crystal_stone_special_2.webp",
     "ingredients": [
       { "id": "starlight_sapphire2", "qty": 5 },
@@ -203,7 +203,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6448,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/blue_crystal_stone_pear_2.webp",
     "ingredients": [
       { "id": "starlight_sapphire2", "qty": 5 },
@@ -217,10 +217,10 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
   "skill": "Gemcrafting",
   "sellValue": 3200,
   "output": 1,
-  "craftingFocus": 10,
+  "craftingFocus": 20,
   "icon": "https://cdn.questlog.gg/blue-protocol/assets/yellow_crystal_stone_basic.webp",
   "ingredients": [
-    { "id": "starlight_diamond1", "qty": 1 }
+    { "id": "starlight_diamond1", "qty": 7 }
   ]
   },
   {
@@ -229,7 +229,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6200,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/yellow_crystal_stone_triangle_2.webp",
     "ingredients": [
       { "id": "starlight_diamond2", "qty": 5 },
@@ -243,7 +243,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6696,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/yellow_crystal_stone_square_2.webp",
     "ingredients": [
       { "id": "starlight_diamond2", "qty": 5 },
@@ -257,7 +257,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6448,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/yellow_crystal_stone_special_2.webp",
     "ingredients": [
       { "id": "starlight_diamond2", "qty": 5 },
@@ -271,7 +271,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6448,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/yellow_crystal_stone_pear_2.webp",
     "ingredients": [
       { "id": "starlight_diamond2", "qty": 5 },
@@ -285,10 +285,10 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
   "skill": "Gemcrafting",
   "sellValue": 3200,
   "output": 1,
-  "craftingFocus": 10,
+  "craftingFocus": 20,
   "icon": "https://cdn.questlog.gg/blue-protocol/assets/green_crystal_stone_basic.webp",
   "ingredients": [
-    { "id": "starlight_emerald1", "qty": 1 }
+    { "id": "starlight_emerald1", "qty": 7 }
   ]
   },
   {
@@ -297,7 +297,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6200,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/green_crystal_stone_triangle_2.webp",
     "ingredients": [
       { "id": "starlight_emerald2", "qty": 5 },
@@ -311,7 +311,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6696,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/green_crystal_stone_square_2.webp",
     "ingredients": [
       { "id": "starlight_emerald2", "qty": 5 },
@@ -325,7 +325,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6448,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/green_crystal_stone_special_2.webp",
     "ingredients": [
       { "id": "starlight_emerald2", "qty": 5 },
@@ -339,7 +339,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Gemcrafting",
     "sellValue": 6448,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/green_crystal_stone_pear_2.webp",
     "ingredients": [
       { "id": "starlight_emerald2", "qty": 5 },
@@ -353,7 +353,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Weaving",
     "sellValue": 2777,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_red_dye_01.webp",
     "ingredients": [
       { "id": "natural_pig_red", "qty": 8 },
@@ -366,7 +366,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Weaving",
     "sellValue": 2777,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_orange_dye_02.webp",
     "ingredients": [
       { "id": "natural_pig_orange", "qty": 8 },
@@ -379,7 +379,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Weaving",
     "sellValue": 2777,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_yellow_dye_01.webp",
     "ingredients": [
       { "id": "natural_pig_yellow", "qty": 8 },
@@ -392,7 +392,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Weaving",
     "sellValue": 2777,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_green_dye_01.webp",
     "ingredients": [
       { "id": "natural_pig_green", "qty": 8 },
@@ -405,7 +405,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Weaving",
     "sellValue": 2777,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_cyan_dye_01.webp",
     "ingredients": [
       { "id": "natural_pig_cyan", "qty": 8 },
@@ -418,7 +418,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Weaving",
     "sellValue": 2777,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_blue_dye_01.webp",
     "ingredients": [
       { "id": "natural_pig_blue", "qty": 8 },
@@ -431,7 +431,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Weaving",
     "sellValue": 2777,
     "output": 1,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_purple_dye_01.webp",
     "ingredients": [
       { "id": "natural_pig_purple", "qty": 8 },
@@ -445,7 +445,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Artisanry",
     "sellValue": 138,
     "output": 15,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "ingredients": []
   },
   {
@@ -454,7 +454,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Artisanry",
     "sellValue": 128,
     "output": 15,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "ingredients": []
   },
   {
@@ -463,7 +463,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Artisanry",
     "sellValue": 472,
     "output": 3,
-    "craftingFocus": 10,
+    "craftingFocus": 20,
     "ingredients": []
   }
     */
