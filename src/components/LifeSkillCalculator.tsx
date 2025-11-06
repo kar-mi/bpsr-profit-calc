@@ -77,11 +77,40 @@ const LifeSkillCalculator: React.FC = () => {
     });
   };
 
+  // Helper to calculate recipe cost
+  const calculateRecipeCost = (recipe: typeof recipes[0]) => {
+    return recipe.ingredients.reduce((sum, { id, qty }) => {
+      const ing = ingredients[id];
+      if (ing) {
+        return sum + ing.defaultPrice * qty;
+      }
+      const nestedRecipe = recipes.find(r => r.id === id);
+      if (nestedRecipe) {
+        return sum + nestedRecipe.sellValue * qty;
+      }
+      return sum;
+    }, 0);
+  };
+
   // 🧩 Filter recipes by selected skill
-  const filteredRecipes =
+  const filteredRecipes = (
     selectedSkill === "All"
       ? recipes
-      : recipes.filter((r) => r.skill === selectedSkill);
+      : recipes.filter((r) => r.skill === selectedSkill)
+  ).sort((a, b) => {
+    if (sortBy === "name") {
+      return a.name.localeCompare(b.name);
+    } else if (sortBy === "profit") {
+      const profitA = a.sellValue - calculateRecipeCost(a);
+      const profitB = b.sellValue - calculateRecipeCost(b);
+      return profitB - profitA; // Highest profit first
+    } else {
+      // totalCost
+      const costA = calculateRecipeCost(a);
+      const costB = calculateRecipeCost(b);
+      return costA - costB; // Lowest cost first
+    }
+  });
 
   const displayedGroups = groupRecipesBySkill(filteredRecipes);
 
@@ -96,8 +125,8 @@ const LifeSkillCalculator: React.FC = () => {
     <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8">
       {/* Recipe Section */}
       <div className="space-y-6">
-        {/* Skill Filter Buttons */}
-        <div className="flex flex-wrap gap-3 mb-6">
+        {/* Skill Filter Buttons and Sort Dropdown */}
+        <div className="flex flex-wrap items-center gap-3 mb-6">
           {["All", "Smelting", "Gemcrafting", "Weaving"].map((skill) => (
             <button
               key={skill}
@@ -111,6 +140,19 @@ const LifeSkillCalculator: React.FC = () => {
               {skill}
             </button>
           ))}
+
+          {/* Sort Dropdown - aligned to the right */}
+          <div className="ml-auto">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as "name" | "profit" | "totalCost")}
+              className="px-3 py-2 rounded-lg bg-[#15181E] text-sm border border-[#232730] focus:ring-2 focus:ring-blue-600 focus:outline-none cursor-pointer"
+            >
+              <option value="name">Name (A-Z)</option>
+              <option value="profit">Profit (High to Low)</option>
+              <option value="totalCost">Total Cost (Low to High)</option>
+            </select>
+          </div>
         </div>
 
         {/* Recipe Grid */}
