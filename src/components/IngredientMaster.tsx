@@ -17,7 +17,7 @@ const IngredientMaster: React.FC<IngredientMasterProps> = ({
   );
 
   return (
-    <div className="flex flex-col bg-[#0E1117] text-white p-4 rounded-2xl shadow-md border border-[#1B1F27] w-full h-full max-w-sm">
+    <div className="flex flex-col bg-[#0E1117] text-white p-4 rounded-2xl shadow-md border border-[#1B1F27] w-full max-w-sm max-h-screen">
       <h2 className="text-lg font-semibold mb-3 text-center">Ingredient Master</h2>
 
       {/* Search */}
@@ -30,7 +30,7 @@ const IngredientMaster: React.FC<IngredientMasterProps> = ({
       />
 
       {/* Ingredient list */}
-      <div className="flex-1 space-y-2 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-[#2A2E36] scrollbar-track-transparent">
+      <div className="flex-1 min-h-0 space-y-2 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#2A2E36] scrollbar-track-[#15181E] hover:scrollbar-thumb-[#343841]">
         {filtered.map((ing) => (
           <div
             key={ing.id}
