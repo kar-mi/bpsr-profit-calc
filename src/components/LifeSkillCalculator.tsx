@@ -119,6 +119,7 @@ const LifeSkillCalculator: React.FC = () => {
               key={recipe.id}
               recipe={recipe}
               ingredients={ingredients}
+              recipes={recipes}
               onIngredientPriceChange={handleIngredientPriceChange}
               onRecipeSellValueChange={handleRecipeSellValueChange}
             />

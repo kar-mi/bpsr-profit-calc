@@ -5,6 +5,7 @@ import { Ingredient } from "@/data/ingredients";
 interface RecipeCardProps {
   recipe: Recipe;
   ingredients: Record<string, Ingredient>;
+  recipes: Recipe[];
   onIngredientPriceChange: (id: string, newPrice: number) => void;
   onRecipeSellValueChange: (id: string, newValue: number) => void;
 }
@@ -12,14 +13,31 @@ interface RecipeCardProps {
 const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
   ingredients,
+  recipes,
   onIngredientPriceChange,
   onRecipeSellValueChange,
 }) => {
   if (!recipe) return null;
 
-  const totalCost = recipe.ingredients.reduce((sum, { id, qty }) => {
+  // Helper function to calculate cost recursively for nested recipes
+  const calculateIngredientCost = (id: string, qty: number): number => {
+    // First check if it's an ingredient
     const ing = ingredients[id];
-    return sum + (ing?.defaultPrice || 0) * qty;
+    if (ing) {
+      return ing.defaultPrice * qty;
+    }
+
+    // If not found in ingredients, check if it's a nested recipe
+    const nestedRecipe = recipes.find(r => r.id === id);
+    if (nestedRecipe) {
+      return nestedRecipe.sellValue * qty;
+    }
+
+    return 0;
+  };
+
+  const totalCost = recipe.ingredients.reduce((sum, { id, qty }) => {
+    return sum + calculateIngredientCost(id, qty);
   }, 0);
 
   const profit = recipe.sellValue - totalCost;
@@ -57,38 +75,74 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
       <div className="space-y-3 mb-5">
         {recipe.ingredients.map(({ id, qty }) => {
           const ing = ingredients[id];
-          if (!ing) return null;
+          const nestedRecipe = recipes.find(r => r.id === id);
+
+          // Skip if neither ingredient nor recipe found
+          if (!ing && !nestedRecipe) return null;
+
+          const isRecipe = !!nestedRecipe && !ing;
+          const displayItem = isRecipe ? nestedRecipe : ing;
+          const price = isRecipe ? nestedRecipe!.sellValue : ing!.defaultPrice;
+          const icon = displayItem?.icon;
+          const name = displayItem?.name || id;
 
           return (
             <div
               key={id}
-              className="flex items-center justify-between bg-[#15181E] hover:bg-[#1A1E26] transition-colors rounded-xl p-3 border border-[#232730]"
+              className={`flex items-center justify-between transition-colors rounded-xl p-3 border ${
+                isRecipe
+                  ? "bg-[#1A1520] hover:bg-[#1F1A26] border-[#332740]"
+                  : "bg-[#15181E] hover:bg-[#1A1E26] border-[#232730]"
+              }`}
             >
               <div className="flex items-center space-x-3">
-                {ing.icon && (
+                {icon && (
                   <img
-                    src={ing.icon}
-                    alt={ing.name}
+                    src={icon}
+                    alt={name}
                     className="w-7 h-7 rounded-md object-cover"
                   />
                 )}
                 <div>
-                  <p className="text-sm font-medium">{ing.name}</p>
+                  <p className="text-sm font-medium">
+                    {name}
+                    {isRecipe && <span className="ml-2 text-xs text-purple-400">(Recipe)</span>}
+                  </p>
                   <p className="text-xs text-gray-400">Needed: {qty}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <input
-                  type="number"
-                  value={ing.defaultPrice}
-                  onChange={(e) =>
-                    onIngredientPriceChange(id, parseFloat(e.target.value))
-                  }
-                  className="w-20 bg-[#1A1D23] text-right text-sm px-2 py-1 rounded-md border border-[#2A2E36] focus:ring-1 focus:ring-blue-600 focus:outline-none"
-                />
-                <span className="text-sm text-gray-400">
-                  = {(ing.defaultPrice * qty).toFixed(0)}
-                </span>
+                {isRecipe ? (
+                  // For nested recipes, show price but make it editable via recipe sell value
+                  <>
+                    <input
+                      type="number"
+                      value={price}
+                      onChange={(e) =>
+                        onRecipeSellValueChange(id, parseFloat(e.target.value))
+                      }
+                      className="w-20 bg-[#1A1D23] text-right text-sm px-2 py-1 rounded-md border border-[#2A2E36] focus:ring-1 focus:ring-purple-600 focus:outline-none"
+                    />
+                    <span className="text-sm text-gray-400">
+                      = {(price * qty).toFixed(0)}
+                    </span>
+                  </>
+                ) : (
+                  // For regular ingredients
+                  <>
+                    <input
+                      type="number"
+                      value={price}
+                      onChange={(e) =>
+                        onIngredientPriceChange(id, parseFloat(e.target.value))
+                      }
+                      className="w-20 bg-[#1A1D23] text-right text-sm px-2 py-1 rounded-md border border-[#2A2E36] focus:ring-1 focus:ring-blue-600 focus:outline-none"
+                    />
+                    <span className="text-sm text-gray-400">
+                      = {(price * qty).toFixed(0)}
+                    </span>
+                  </>
+                )}
               </div>
             </div>
           );
