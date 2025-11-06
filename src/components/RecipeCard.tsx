@@ -40,8 +40,21 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
     return sum + calculateIngredientCost(id, qty);
   }, 0);
 
+  // Calculate total focus cost (gathering ingredients + crafting)
+  const totalFocusCost = recipe.ingredients.reduce((sum, { id, qty }) => {
+    const ing = ingredients[id];
+    if (ing && ing.gatheringFocus > 0) {
+      // Calculate focus needed to gather this ingredient
+      const focusPerItem = ing.gatheringFocus / ing.gatherCount;
+      return sum + (focusPerItem * qty);
+    }
+    // For recipes or items with no gathering focus, don't add to focus cost
+    return sum;
+  }, recipe.craftingFocus); // Start with the crafting focus
+
   const profit = recipe.sellValue - totalCost;
   const roi = totalCost > 0 ? (profit / totalCost) * 100 : 0;
+  const profitPerFocus = totalFocusCost > 0 ? profit / totalFocusCost : 0;
 
   return (
     <div className="bg-[#0E1117] text-white p-6 rounded-2xl shadow-md border border-[#1B1F27] w-full">
@@ -108,7 +121,14 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
                     {name}
                     {isRecipe && <span className="ml-2 text-xs text-purple-400">(Recipe)</span>}
                   </p>
-                  <p className="text-xs text-gray-400">Needed: {qty}</p>
+                  <p className="text-xs text-gray-400">
+                    Needed: {qty}
+                    {!isRecipe && ing && ing.gatheringFocus > 0 && (
+                      <span className="ml-2 text-amber-400">
+                        ⚡ {((ing.gatheringFocus / ing.gatherCount) * qty).toFixed(1)}
+                      </span>
+                    )}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
@@ -150,7 +170,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
       </div>
 
       {/* Metrics */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="bg-[#15181E] p-3 rounded-xl border border-[#232730] text-center">
           <p className="text-xs text-gray-400">Total Cost</p>
           <p className="text-lg font-semibold">{totalCost.toFixed(0)}</p>
@@ -170,6 +190,15 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
           <p className="text-lg font-semibold">
             {profit.toFixed(0)}{" "}
             <span className="text-sm text-gray-400">({roi.toFixed(2)}%)</span>
+          </p>
+        </div>
+        <div className="bg-[#15181E] p-3 rounded-xl border border-[#232730] text-center">
+          <p className="text-xs text-gray-400">Focus Cost</p>
+          <p className="text-lg font-semibold">
+            {totalFocusCost.toFixed(1)}
+            <span className="text-xs text-gray-400 block mt-1">
+              {profitPerFocus.toFixed(1)}/focus
+            </span>
           </p>
         </div>
       </div>
