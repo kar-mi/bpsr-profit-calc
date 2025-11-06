@@ -40,8 +40,37 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
     return sum + calculateIngredientCost(id, qty);
   }, 0);
 
+  // Helper to calculate focus cost recursively for nested recipes
+  const calculateFocusCost = (recipeId: string, qty: number = 1): number => {
+    // First check if it's a recipe
+    const nestedRecipe = recipes.find(r => r.id === recipeId);
+    if (nestedRecipe) {
+      // Recursively calculate the total focus for this nested recipe
+      const nestedIngredientsFocus = nestedRecipe.ingredients.reduce((sum, { id, qty: nestedQty }) => {
+        return sum + calculateFocusCost(id, nestedQty);
+      }, 0);
+      // Add the crafting focus for this recipe + ingredients focus
+      return (nestedRecipe.craftingFocus + nestedIngredientsFocus) * qty;
+    }
+
+    // If it's an ingredient, calculate gathering focus
+    const ing = ingredients[recipeId];
+    if (ing && ing.gatheringFocus > 0) {
+      const focusPerItem = ing.gatheringFocus / ing.gatherCount;
+      return focusPerItem * qty;
+    }
+
+    return 0;
+  };
+
+  // Calculate total focus cost (gathering ingredients + crafting)
+  const totalFocusCost = recipe.ingredients.reduce((sum, { id, qty }) => {
+    return sum + calculateFocusCost(id, qty);
+  }, recipe.craftingFocus); // Start with the crafting focus
+
   const profit = recipe.sellValue - totalCost;
   const roi = totalCost > 0 ? (profit / totalCost) * 100 : 0;
+  const profitPerFocus = totalFocusCost > 0 ? profit / totalFocusCost : 0;
 
   return (
     <div className="bg-[#0E1117] text-white p-6 rounded-2xl shadow-md border border-[#1B1F27] w-full">
@@ -108,7 +137,19 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
                     {name}
                     {isRecipe && <span className="ml-2 text-xs text-purple-400">(Recipe)</span>}
                   </p>
-                  <p className="text-xs text-gray-400">Needed: {qty}</p>
+                  <p className="text-xs text-gray-400">
+                    Needed: {qty}
+                    {!isRecipe && ing && ing.gatheringFocus > 0 && (
+                      <span className="ml-2 text-amber-400">
+                        ⚡ {((ing.gatheringFocus / ing.gatherCount) * qty).toFixed(1)}
+                      </span>
+                    )}
+                    {isRecipe && nestedRecipe && (
+                      <span className="ml-2 text-purple-400">
+                        ⚡ {calculateFocusCost(id, qty).toFixed(1)}
+                      </span>
+                    )}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
@@ -150,7 +191,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
       </div>
 
       {/* Metrics */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="bg-[#15181E] p-3 rounded-xl border border-[#232730] text-center">
           <p className="text-xs text-gray-400">Total Cost</p>
           <p className="text-lg font-semibold">{totalCost.toFixed(0)}</p>
@@ -170,6 +211,15 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
           <p className="text-lg font-semibold">
             {profit.toFixed(0)}{" "}
             <span className="text-sm text-gray-400">({roi.toFixed(2)}%)</span>
+          </p>
+        </div>
+        <div className="bg-[#15181E] p-3 rounded-xl border border-[#232730] text-center">
+          <p className="text-xs text-gray-400">Focus Cost</p>
+          <p className="text-lg font-semibold">
+            {totalFocusCost.toFixed(1)}
+            <span className="text-xs text-gray-400 block mt-1">
+              {profitPerFocus.toFixed(1)}/focus
+            </span>
           </p>
         </div>
       </div>
