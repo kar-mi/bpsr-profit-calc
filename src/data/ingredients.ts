@@ -168,8 +168,8 @@ const BASE_INGREDIENTS: Omit<Ingredient, "valuePerFocus">[] = [
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_blue_roughstone_03.webp"
   },
   {
-    "id": "starlight_topaz1",
-    "name": "Starlight Topaz Lv.1",
+    "id": "starlight_diamond1",
+    "name": "Starlight Diamond Lv.1",
     "defaultPrice": 144.0,
     "total": 144.0,
     "gatherCount": 9.0,
@@ -177,8 +177,8 @@ const BASE_INGREDIENTS: Omit<Ingredient, "valuePerFocus">[] = [
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_yellow_roughstone_01.webp"
   },
   {
-    "id": "starlight_topaz2",
-    "name": "Starlight Topaz Lv.2",
+    "id": "starlight_diamond2",
+    "name": "Starlight Diamond Lv.2",
     "defaultPrice": 306.0,
     "total": 306.0,
     "gatherCount": 7.0,
@@ -186,8 +186,8 @@ const BASE_INGREDIENTS: Omit<Ingredient, "valuePerFocus">[] = [
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_yellow_roughstone_02.webp"
   },
   {
-    "id": "starlight_topaz3",
-    "name": "Starlight Topaz Lv.3",
+    "id": "starlight_diamond3",
+    "name": "Starlight Diamond Lv.3",
     "defaultPrice": 20,
     "total": 0.0,
     "gatherCount": 5.0,
