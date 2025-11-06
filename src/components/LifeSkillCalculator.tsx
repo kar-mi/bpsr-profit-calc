@@ -21,6 +21,7 @@ const LifeSkillCalculator: React.FC = () => {
   const [selectedSkill, setSelectedSkill] = useState<string>("All");
   const [selectedRecipe, setSelectedRecipe] = useState(RECIPES[0]);
   const [sortBy, setSortBy] = useState<"name" | "profit" | "totalCost">("name");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   // 🧠 Load saved data (prices & recipes)
   useEffect(() => {
@@ -92,12 +93,16 @@ const LifeSkillCalculator: React.FC = () => {
     }, 0);
   };
 
-  // 🧩 Filter recipes by selected skill
+  // 🧩 Filter recipes by selected skill and search query
   const filteredRecipes = (
     selectedSkill === "All"
       ? recipes
       : recipes.filter((r) => r.skill === selectedSkill)
-  ).sort((a, b) => {
+  )
+    .filter((r) =>
+      r.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => {
     if (sortBy === "name") {
       return a.name.localeCompare(b.name);
     } else if (sortBy === "profit") {
@@ -141,8 +146,15 @@ const LifeSkillCalculator: React.FC = () => {
             </button>
           ))}
 
-          {/* Sort Dropdown - aligned to the right */}
-          <div className="ml-auto">
+          {/* Search and Sort - aligned to the right */}
+          <div className="ml-auto flex gap-3">
+            <input
+              type="text"
+              placeholder="Search recipes..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="px-3 py-2 rounded-lg bg-[#15181E] text-sm border border-[#232730] focus:ring-2 focus:ring-blue-600 focus:outline-none w-48"
+            />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as "name" | "profit" | "totalCost")}

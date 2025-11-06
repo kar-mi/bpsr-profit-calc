@@ -40,16 +40,32 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
     return sum + calculateIngredientCost(id, qty);
   }, 0);
 
+  // Helper to calculate focus cost recursively for nested recipes
+  const calculateFocusCost = (recipeId: string, qty: number = 1): number => {
+    // First check if it's a recipe
+    const nestedRecipe = recipes.find(r => r.id === recipeId);
+    if (nestedRecipe) {
+      // Recursively calculate the total focus for this nested recipe
+      const nestedIngredientsFocus = nestedRecipe.ingredients.reduce((sum, { id, qty: nestedQty }) => {
+        return sum + calculateFocusCost(id, nestedQty);
+      }, 0);
+      // Add the crafting focus for this recipe + ingredients focus
+      return (nestedRecipe.craftingFocus + nestedIngredientsFocus) * qty;
+    }
+
+    // If it's an ingredient, calculate gathering focus
+    const ing = ingredients[recipeId];
+    if (ing && ing.gatheringFocus > 0) {
+      const focusPerItem = ing.gatheringFocus / ing.gatherCount;
+      return focusPerItem * qty;
+    }
+
+    return 0;
+  };
+
   // Calculate total focus cost (gathering ingredients + crafting)
   const totalFocusCost = recipe.ingredients.reduce((sum, { id, qty }) => {
-    const ing = ingredients[id];
-    if (ing && ing.gatheringFocus > 0) {
-      // Calculate focus needed to gather this ingredient
-      const focusPerItem = ing.gatheringFocus / ing.gatherCount;
-      return sum + (focusPerItem * qty);
-    }
-    // For recipes or items with no gathering focus, don't add to focus cost
-    return sum;
+    return sum + calculateFocusCost(id, qty);
   }, recipe.craftingFocus); // Start with the crafting focus
 
   const profit = recipe.sellValue - totalCost;
@@ -126,6 +142,11 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
                     {!isRecipe && ing && ing.gatheringFocus > 0 && (
                       <span className="ml-2 text-amber-400">
                         ⚡ {((ing.gatheringFocus / ing.gatherCount) * qty).toFixed(1)}
+                      </span>
+                    )}
+                    {isRecipe && nestedRecipe && (
+                      <span className="ml-2 text-purple-400">
+                        ⚡ {calculateFocusCost(id, qty).toFixed(1)}
                       </span>
                     )}
                   </p>
