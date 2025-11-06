@@ -1,9 +1,9 @@
 {
-  "name": "automatic-octo-doodle",
+  "name": "bpsr-profit-calc",
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "homepage": "https:// tdnk-td.github.io/automatic-octo-doodle/",
+  "homepage": "https://github.com/kar-mi/bpsr-profit-calc",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

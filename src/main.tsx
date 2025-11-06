@@ -16,7 +16,7 @@ function Navbar() {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/automatic-octo-doodle">
+    <BrowserRouter basename="/bpsr-profit-calc">
       <App />
     </BrowserRouter>
   </React.StrictMode>

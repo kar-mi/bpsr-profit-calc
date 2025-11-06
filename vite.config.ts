@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/automatic-octo-doodle/",
+  base: "/bpsr-profit-calc/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
