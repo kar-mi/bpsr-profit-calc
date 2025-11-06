@@ -29,7 +29,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Smelting",
     "sellValue": 2083,
     "output": 1,
-    "craftingFocus": 20,
+    "craftingFocus": 10,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_god_metal_01.webp",
     "ingredients": [
       { "id": "baru_ore", "qty": 8 },
@@ -42,7 +42,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Smelting",
     "sellValue": 2083,
     "output": 1,
-    "craftingFocus": 20,
+    "craftingFocus": 10,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_god_metal_02.webp",
     "ingredients": [
       { "id": "luna_ore", "qty": 8 },
@@ -55,7 +55,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Smelting",
     "sellValue": 2083,
     "output": 1,
-    "craftingFocus": 20,
+    "craftingFocus": 10,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_aluminium_01.webp",
     "ingredients": [
       { "id": "azte_ore", "qty": 8 },
@@ -68,7 +68,7 @@ const BASE_RECIPES: Omit<Recipe, "totalIngredientCost" | "focusEfficiency">[] = 
     "skill": "Smelting",
     "sellValue": 6000,
     "output": 1,
-    "craftingFocus": 20,
+    "craftingFocus": 10,
     "icon": "https://cdn.questlog.gg/blue-protocol/assets/item_icons_equipment%20gems_01.webp",
     "ingredients": [
       { "id": "stokes_rich_ore", "qty": 9 },
